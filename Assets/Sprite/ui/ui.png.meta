@@ -368,7 +368,7 @@ TextureImporter:
         width: 129
         height: 148
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -376,6 +376,69 @@ TextureImporter:
       bones: []
       spriteID: e9be184c4e6fa9642a3e43a49231373d
       internalID: 1472888066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_12
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 1604
+        width: 222
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 725465c524c5f074e87b9a88d8544323
+      internalID: 468284299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_13
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 1254
+        width: 90
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70a470e2f4afb664097bb031eab1bd58
+      internalID: -678479702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_14
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 1374
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b547f4d0d62012b4ba4a8c1df3db6c3c
+      internalID: -402333614
       vertices: []
       indices: 
       edges: []
@@ -396,6 +459,8 @@ TextureImporter:
       ui_10: 748895309
       ui_11: 1472888066
       ui_12: 468284299
+      ui_13: -678479702
+      ui_14: -402333614
       ui_2: 646226904
       ui_3: 1288445803
       ui_4: 1083371067
