@@ -426,12 +426,12 @@ TextureImporter:
       name: ui_14
       rect:
         serializedVersion: 2
-        x: 151
-        y: 1374
-        width: 61
-        height: 53
+        x: 216
+        y: 1252
+        width: 139
+        height: 115
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

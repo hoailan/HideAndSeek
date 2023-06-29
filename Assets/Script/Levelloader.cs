@@ -9,20 +9,15 @@ public class Levelloader : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1f;
 
-    public Button levelButton;
+    public Button playButton;
     public Button modeLevelButton;
     public Button levelSelectButton;
 
     private void Start()
     {
-        levelButton.onClick.AddListener(LoadGameplayScene);
+        playButton.onClick.AddListener(PlayGame);
         modeLevelButton.onClick.AddListener(LoadModeLevelScene);
         levelSelectButton.onClick.AddListener(LoadLevelSelectScene);
-    }
-
-    public void LoadGameplayScene()
-    {
-        StartCoroutine(LoadSceneByName("Gameplay"));
     }
 
     public void LoadModeLevelScene()
@@ -42,5 +37,13 @@ public class Levelloader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void PlayGame()
+    {
+
+        modeLevelButton.gameObject.SetActive(false);
+        levelSelectButton.gameObject.SetActive(false);
+
     }
 }
