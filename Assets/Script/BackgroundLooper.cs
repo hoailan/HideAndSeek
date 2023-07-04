@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BackgroundLooper : MonoBehaviour
 {
-    public float scrollSpeed = 1f;  // Tốc độ cuộn của background
-    public float startPositionY = -10f;  // Vị trí ban đầu của background theo trục Y
-    public float endPositionY = 10f;  // Vị trí kết thúc của background theo trục Y
+    public float scrollSpeed = 1f;  
+    public float startPositionY = -10f;  
+    public float endPositionY = 10f;  
 
     private void Update()
     {

@@ -8,6 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class Gamemanager : MonoBehaviour
 {
+    public CountdownTimer countdownTimer;
+    private bool isGameOver = false;
+    private bool hasStarted = false;
+    public Gameover gameOver;
     public Animator transition;
     public float transitionTime = 1f;
 
@@ -16,7 +20,10 @@ public class Gamemanager : MonoBehaviour
     public Button levelSelectButton;
     public Button replayButton;
 
-    public List<Button> buttonsToHide;
+    public List<Button> buttonsToHide; 
+
+    private float gameOverDelay = 1f; 
+    private float gameOverTimer = 0f; 
 
     private void Start()
     {
@@ -24,6 +31,23 @@ public class Gamemanager : MonoBehaviour
         modeLevelButton.onClick.AddListener(LoadModeLevelScene);
         levelSelectButton.onClick.AddListener(LoadLevelSelectScene);
         replayButton.onClick.AddListener(ReplayGame);
+
+        countdownTimer.OnTimerFinished += HandleTimerFinished;
+    }
+
+    private void Update()
+    {
+        if (isGameOver)
+        {
+            if (gameOverTimer >= gameOverDelay)
+            {
+                gameOver.ShowGameOver();
+            }
+            else
+            {
+                gameOverTimer += Time.deltaTime;
+            }
+        }
     }
 
     public void LoadModeLevelScene()
@@ -39,33 +63,61 @@ public class Gamemanager : MonoBehaviour
     IEnumerator LoadSceneByName(string sceneName)
     {
         transition.SetTrigger("Start");
-
         yield return new WaitForSeconds(transitionTime);
-
         SceneManager.LoadScene(sceneName);
     }
 
     public void PlayGame()
     {
-        // Ẩn các button cần ẩn
-        foreach (var button in buttonsToHide)
+        if (isGameOver)
         {
-            button.gameObject.SetActive(false);
+            RestartGame();
         }
+        else if (!hasStarted)
+        {
+            // Ẩn các Button trong list
+            foreach (var button in buttonsToHide)
+            {
+                button.gameObject.SetActive(false);
+            }
 
-        // Thực hiện các hành động khác để bắt đầu game
-        // ...
+            countdownTimer.StartTimer();
+            hasStarted = true;
+        }
     }
 
     public void ReplayGame()
     {
-        // Hiển thị lại các button đã ẩn
+        RestartGame();
+    }
+
+    private void RestartGame()
+    {
+        // Hiển thị lại các Button trong list
         foreach (var button in buttonsToHide)
         {
             button.gameObject.SetActive(true);
         }
 
-        // Thực hiện các hành động khác để chơi lại game
-        // ...
+        gameOver.HideGameOver();
+        countdownTimer.ResetTimer();
+
+        hasStarted = false;
+        isGameOver = false;
+        gameOverTimer = 0f;
+    }
+
+    private void HandleTimerFinished()
+    {
+        if (hasStarted && !isGameOver)
+        {
+            isGameOver = true;
+        }
+    }
+
+    public void GameOver()
+    {
+        gameOver.ShowGameOver();
+        countdownTimer.StopTimer();
     }
 }
