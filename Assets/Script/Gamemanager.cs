@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
-
+using System;
 
 public class Gamemanager : MonoBehaviour
 {
+
+    private static Gamemanager instance;
+    public static Gamemanager Instance { get => instance;}
+
     public CountdownTimer countdownTimer;
     private bool isGameOver = false;
     private bool hasStarted = false;
@@ -23,8 +26,14 @@ public class Gamemanager : MonoBehaviour
     public List<Button> buttonsToHide; 
 
     private float gameOverDelay = 1f; 
-    private float gameOverTimer = 0f; 
+    private float gameOverTimer = 0f;
 
+    public static event Action OnStartGame;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         playButton.onClick.AddListener(PlayGame);
@@ -80,7 +89,7 @@ public class Gamemanager : MonoBehaviour
             {
                 button.gameObject.SetActive(false);
             }
-
+            OnStartGame.Invoke();
             countdownTimer.StartTimer();
             hasStarted = true;
         }
