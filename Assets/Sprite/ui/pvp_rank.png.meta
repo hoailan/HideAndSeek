@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -127,7 +127,196 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: pvp_rank_1
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 899
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feea9cf5a738fe443a3e0be364c33595
+      internalID: -705880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pvp_rank_2
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 899
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0276d9f08f417d5449a621dd81c53984
+      internalID: 1317106660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pvp_rank_5
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 771
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfbab8dd3736cdd4688814a4d77ec779
+      internalID: 1432136140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pvp_rank_10
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 643
+        width: 87
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35122eb1637e12c48b52a3439fc69787
+      internalID: -1413998776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pvp_rank_12
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 515
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c30e9e2d6aa5e4ea086474066b27e5
+      internalID: -879856214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pvp_rank_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 378
+        width: 96
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 907fea0574308ae40b3da16ee37a78c7
+      internalID: 686843724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pvp_rank_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 252
+        width: 93
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c01e2946a5cde04f8ec655abaad7052
+      internalID: 2111904181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pvp_rank_18
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 126
+        width: 92
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1699fe7aeead4284984ae9fe89c19a2e
+      internalID: -495532722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pvp_rank_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 93
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de2d56318f32716439d8e387fd77aec0
+      internalID: 1861631497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -138,7 +327,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pvp_rank_0: 772597273
+      pvp_rank_1: -705880
+      pvp_rank_10: -1413998776
+      pvp_rank_11: 1729197734
+      pvp_rank_12: -879856214
+      pvp_rank_13: 992304519
+      pvp_rank_14: 686843724
+      pvp_rank_15: -435957523
+      pvp_rank_16: 2111904181
+      pvp_rank_17: -160450173
+      pvp_rank_18: -495532722
+      pvp_rank_19: 1861631497
+      pvp_rank_2: 1317106660
+      pvp_rank_3: 321158283
+      pvp_rank_4: -307256396
+      pvp_rank_5: 1432136140
+      pvp_rank_6: -1556217684
+      pvp_rank_7: -1587578511
+      pvp_rank_8: 1196218795
+      pvp_rank_9: -1080336561
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

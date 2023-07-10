@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Spine/Runtime/spine-unity/Utility.meta
 guid: 52627c17e6dd4bf4dad4bdfc490ce823
+========
+guid: f5fb93fa8dcbe5f40b636036c0cae42b
+>>>>>>>> bfce56c5cdc5d83664c1c76072c74822523261ad:Assets/Animation/Elevator.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

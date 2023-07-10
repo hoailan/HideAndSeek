@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Script/Lam/Enemy/spineAnimation/enemy_file.png.meta
 guid: e2e804e4b9f45bf4b8e4e661389b7f38
+========
+guid: 8484ba43ef6070941ac12eca3ff3803b
+>>>>>>>> bfce56c5cdc5d83664c1c76072c74822523261ad:Assets/Obstacle_clock_a_Dither.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -91,6 +95,21 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
+<<<<<<<< HEAD:Assets/Script/Lam/Enemy/spineAnimation/enemy_file.png.meta
+========
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+>>>>>>>> bfce56c5cdc5d83664c1c76072c74822523261ad:Assets/Obstacle_clock_a_Dither.png.meta
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1

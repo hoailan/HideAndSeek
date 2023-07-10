@@ -60,10 +60,7 @@ public class Scibidi : MonoBehaviour
             
             //StartCoroutine(toiletDown());
         }
-        if (fov.viewChecked)
-        {
-            skeletonAnimation.AnimationState.Complete += OnAnimationCompleted;
-        }
+
         check = fov.seenPlayer;
         if (check)
         {
@@ -73,7 +70,6 @@ public class Scibidi : MonoBehaviour
 
     private IEnumerator toiletUp()
     {
-        yield return new WaitForSeconds(3f);
         up = true;
         PlayAnimation(SpineAnimationEnum.toilet);
 
@@ -159,11 +155,6 @@ public class Scibidi : MonoBehaviour
 
     private void OnAnimationCompleted(TrackEntry trackEntry)
     {
-        if (skeletonAnimation != null)
-        {
-            skeletonAnimation.loop = false;
-            skeletonAnimation.timeScale = 0.7f;
-        }
         if (trackEntry.Animation.Name == "attack")
         {
             PlayAnimation(SpineAnimationEnum.joker);

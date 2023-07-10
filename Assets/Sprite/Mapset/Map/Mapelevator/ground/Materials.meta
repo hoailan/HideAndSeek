@@ -1,8 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sprite/Mapset/Map/Mapelevator/ground/Materials.meta
 guid: 5e8e0b228acfee0499debc7995907570
+========
+guid: a7236dbdc6a4e5a4989483dac97aee0b
+>>>>>>>> bfce56c5cdc5d83664c1c76072c74822523261ad:Assets/Spine/Runtime/spine-unity/Components/SkeletonRendererCustomMaterials.meta
 folderAsset: yes
 DefaultImporter:
-  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 

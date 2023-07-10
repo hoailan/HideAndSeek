@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
+
 public class Gamemanager : MonoBehaviour
 {
 
@@ -23,9 +24,11 @@ public class Gamemanager : MonoBehaviour
     public Button levelSelectButton;
     public Button replayButton;
 
-    public List<Button> buttonsToHide; 
+    public List<Button> buttonsToHide;
+    public List<Image> imagesToHide;
 
     private float gameOverDelay = 1f; 
+
     private float gameOverTimer = 0f;
 
     public static event Action OnStartGame;
@@ -84,14 +87,11 @@ public class Gamemanager : MonoBehaviour
         }
         else if (!hasStarted)
         {
-            // Ẩn các Button trong list
-            foreach (var button in buttonsToHide)
-            {
-                button.gameObject.SetActive(false);
-            }
-            OnStartGame.Invoke();
+            HideButtons();
+            HideImages();
             countdownTimer.StartTimer();
             hasStarted = true;
+            OnStartGame.Invoke();
         }
     }
 
@@ -102,11 +102,8 @@ public class Gamemanager : MonoBehaviour
 
     private void RestartGame()
     {
-        // Hiển thị lại các Button trong list
-        foreach (var button in buttonsToHide)
-        {
-            button.gameObject.SetActive(true);
-        }
+        ShowButtons();
+        ShowImages();
 
         gameOver.HideGameOver();
         countdownTimer.ResetTimer();
@@ -128,5 +125,37 @@ public class Gamemanager : MonoBehaviour
     {
         gameOver.ShowGameOver();
         countdownTimer.StopTimer();
+    }
+
+    private void HideButtons()
+    {
+        foreach (var button in buttonsToHide)
+        {
+            button.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowButtons()
+    {
+        foreach (var button in buttonsToHide)
+        {
+            button.gameObject.SetActive(true);
+        }
+    }
+
+    private void HideImages()
+    {
+        foreach (var image in imagesToHide)
+        {
+            image.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowImages()
+    {
+        foreach (var image in imagesToHide)
+        {
+            image.gameObject.SetActive(true);
+        }
     }
 }

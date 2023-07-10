@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Script/Lam.meta
 guid: b3ca98172e3853c4eb700ec0742f6d80
+========
+guid: 52627c17e6dd4bf4dad4bdfc490ce823
+>>>>>>>> bfce56c5cdc5d83664c1c76072c74822523261ad:Assets/Spine/Runtime/spine-unity/Utility.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

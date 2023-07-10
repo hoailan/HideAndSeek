@@ -8,12 +8,19 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FadeMaterial
+<<<<<<< HEAD
   m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+=======
+  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
+>>>>>>> bfce56c5cdc5d83664c1c76072c74822523261ad
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHABLEND_ON
   - _EMISSION
+<<<<<<< HEAD
   - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+=======
+>>>>>>> bfce56c5cdc5d83664c1c76072c74822523261ad
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

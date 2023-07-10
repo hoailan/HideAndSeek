@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sprite/Mapset/Map/Mapcity/Ground/Materials.meta
 guid: 15e92a0d0af082043ade0fb511118bce
+========
+guid: 1c762c3471fe09847a899d4ad36a1c7b
+>>>>>>>> bfce56c5cdc5d83664c1c76072c74822523261ad:Assets/Sprite/Mapset/Map/MapInhouse/ground.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
