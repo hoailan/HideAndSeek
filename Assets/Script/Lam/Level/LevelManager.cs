@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     {
         Player.OnPlayerFinish += saveLevel;
         instance = this;
+        loadLevel();
     }
 
     void Start()
@@ -26,7 +27,7 @@ public class LevelManager : MonoBehaviour
         }
         loadLevel();
 
-        if(level >= levelPrefab.Count)
+        if (level >= levelPrefab.Count)
         {
             level = 0;
         }
@@ -45,7 +46,8 @@ public class LevelManager : MonoBehaviour
 
     public void loadLevel()
     {
-        level = PlayerPrefs.GetInt("level");
+        level = 2;
+        //level = PlayerPrefs.GetInt("level");
     }
 
     public void saveLevel()
@@ -64,6 +66,6 @@ public class LevelManager : MonoBehaviour
 
     public int getLevel()
     {
-        return level;
+        return level + 1;
     }
 }

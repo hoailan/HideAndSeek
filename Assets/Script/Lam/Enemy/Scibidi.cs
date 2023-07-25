@@ -11,6 +11,7 @@ public class Scibidi : CusMonoBehaviour
 {
     private SkeletonAnimation skeletonAnimation;
     public FieldOfView fov;
+    public FieldOfView fov2;
     private Vector3 targetPosition;
     private Vector3 startPosition;
 
@@ -36,6 +37,7 @@ public class Scibidi : CusMonoBehaviour
     {
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         fov = GetComponentInChildren<FieldOfView>();
+        fov2 = transform.Find("FOV2").gameObject.GetComponent<FieldOfView>();
     }
 
     // Update is called once per frame
@@ -53,12 +55,13 @@ public class Scibidi : CusMonoBehaviour
         {
             StartCoroutine(toiletCheck());
         }
-        if (fov.viewChecked && up)
+        if (fov.viewChecked && fov2.viewChecked && up)
         {
             toiletChecked = true;
             Debug.Log("call");
             StartCoroutine(toiletDown());
             fov.viewChecked = false;
+            fov2.viewChecked = false;
         }
         if (toiletChecked && up)
         {
@@ -67,8 +70,7 @@ public class Scibidi : CusMonoBehaviour
             
         }
 
-        check = fov.seenPlayer;
-        if (check)
+        if (fov.seenPlayer || fov2.seenPlayer)
         {
             StartCoroutine(toiletAttack());
         }
@@ -110,6 +112,7 @@ public class Scibidi : CusMonoBehaviour
         yield return new WaitForSeconds(3f);
         PlayAnimation(SpineAnimationEnum.attack);
         fov.isPeek = true;
+        fov2.isPeek = true;
     }
 
     public IEnumerator toiletAttack()
@@ -117,6 +120,7 @@ public class Scibidi : CusMonoBehaviour
         skeletonAnimation.loop = false;
         skeletonAnimation.timeScale = 0.7f;
         fov.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        fov2.gameObject.GetComponent<MeshRenderer>().enabled = false;
         PlayAnimation(SpineAnimationEnum.attack_completer);
         yield return new WaitForSeconds(skeletonAnimation.AnimationState.GetCurrent(0).Animation.Duration + 0.5f);
         Gamemanager.Instance.GameOver();

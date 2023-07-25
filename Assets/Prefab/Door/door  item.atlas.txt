@@ -1,0 +1,41 @@
+
+door  item.png
+size: 288,208
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+door
+  rotate: false
+  xy: 163, 59
+  size: 121, 145
+  orig: 121, 145
+  offset: 0, 0
+  index: -1
+door2
+  rotate: false
+  xy: 2, 2
+  size: 159, 202
+  orig: 159, 202
+  offset: 0, 0
+  index: -1
+green
+  rotate: false
+  xy: 163, 32
+  size: 9, 9
+  orig: 11, 11
+  offset: 1, 1
+  index: -1
+light
+  rotate: false
+  xy: 163, 43
+  size: 42, 14
+  orig: 48, 20
+  offset: 3, 3
+  index: -1
+red
+  rotate: false
+  xy: 207, 48
+  size: 9, 9
+  orig: 11, 11
+  offset: 1, 1
+  index: -1

@@ -15,8 +15,6 @@ public class Player : MonoBehaviour
     public static event Action OnPlayerSpeedUp;
     public static event Action OnPlayerSpeedDown;
     public static bool OnObTouch;
-    public FieldOfView fov1;
-    // public FieldOfView fov2;
 
     private Transform startPoint; 
     public float totalDistance; 
@@ -46,8 +44,7 @@ public class Player : MonoBehaviour
         PlayAnimation(SpineAnimationEnum.scary);
         OnObTouch = false;
         // temp
-        startPoint = transform;
-        totalDistance = MathF.Abs(endPoint.position.x - 0.8f - transform.position.x);
+        
     }
 
     // Update is called once per frame
@@ -85,8 +82,13 @@ public class Player : MonoBehaviour
         // can change endpoint
         // reach endpoint
         GameObject gameObject = collision.gameObject;
-        if (gameObject.name.Equals("endPoint"))
+        if (gameObject.name.Equals("EndPoint"))
         {
+            if (collision.gameObject.GetComponent<EndPub>() == null)
+            {
+                Debug.Log("not found end pub");
+                return;
+            }
             Debug.Log("end");
             OnPlayerFinish.Invoke();
             Gamemanager.Instance.countdownTimer.StopTimer();
@@ -106,9 +108,10 @@ public class Player : MonoBehaviour
         }
 
         // reach ostacle
-        if (gameObject.name.Equals("check"))
+        if (gameObject.name.Equals("Check"))
         {
             OnObTouch = true;
+            Debug.Log("scibidi up - on player check");
         }
         else
         {
@@ -140,6 +143,14 @@ public class Player : MonoBehaviour
         TouchEventPublisher.OnScreenTouchEnd += HandleScreenTouchEnd;
         PlayAnimation(SpineAnimationEnum.run);
         skeletonAnimation.timeScale = 2f;
+        getEndPoint();
+    }
+
+    private void getEndPoint()
+    {
+        startPoint = transform;
+        totalDistance = MathF.Abs(endPoint.position.x - 0.8f - transform.position.x);
+        //endPoint = GameObject.Find
     }
 
     private void HandleSeenPlayer()
