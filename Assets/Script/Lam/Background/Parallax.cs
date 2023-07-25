@@ -9,8 +9,10 @@ public class Parallax : MonoBehaviour
 
     [Range(0f, 0.5f)]
     public float speed = 0.2f;
+    public float speedup;
+    public float speeddown;
+    public float durationSpeedChange;
     private float dynamicSpeed;
-    public bool start = false;
 
     void Start()
     {
@@ -20,10 +22,7 @@ public class Parallax : MonoBehaviour
 
     void Update()
     {
-        if (start)
-        {
-            move();
-        }
+        move();
     }
 
     private void OnEnable()
@@ -34,9 +33,6 @@ public class Parallax : MonoBehaviour
 
     private void OnDisable()
     {
-        TouchEventPublisher.OnScreenTouchBegin -= HandleScreenTouchBegin;
-        TouchEventPublisher.OnScreenTouchHold -= HandleScreenTouchHold;
-        TouchEventPublisher.OnScreenTouchEnd -= HandleScreenTouchEnd;
         Player.OnPlayerFinish -= HandlePlayerFinish;
     }
 
@@ -57,7 +53,11 @@ public class Parallax : MonoBehaviour
 
     private void HandlePlayerFinish()
     {
-        // to do
+        TouchEventPublisher.OnScreenTouchBegin -= HandleScreenTouchBegin;
+        TouchEventPublisher.OnScreenTouchHold -= HandleScreenTouchHold;
+        TouchEventPublisher.OnScreenTouchEnd -= HandleScreenTouchEnd;
+        Player.OnPlayerSpeedUp -= HandleOnSpeedUp;
+        Player.OnPlayerSpeedDown -= HandleOnSpeedDown;
         dynamicSpeed = 0f;
     }
 
@@ -72,13 +72,33 @@ public class Parallax : MonoBehaviour
         TouchEventPublisher.OnScreenTouchHold += HandleScreenTouchHold;
         TouchEventPublisher.OnScreenTouchEnd += HandleScreenTouchEnd;
         Player.OnPlayerFinish += HandlePlayerFinish;
+        Player.OnPlayerSpeedUp += HandleOnSpeedUp;
+        Player.OnPlayerSpeedDown += HandleOnSpeedDown;
         dynamicSpeed = speed;
-        start = true; 
     }
 
     private void move()
     {
         distance += Time.deltaTime * dynamicSpeed;
         material.SetTextureOffset("_MainTex", Vector2.right * distance);
+    }
+
+    private void HandleOnSpeedUp()
+    {
+        dynamicSpeed = speedup;
+        StartCoroutine(ResetSpeedAfterDuration(durationSpeedChange));
+    }
+
+    private void HandleOnSpeedDown()
+    {
+        dynamicSpeed = speeddown;
+        StartCoroutine(ResetSpeedAfterDuration(durationSpeedChange));
+    }
+
+    // back to normail speed with "duration" second
+    private IEnumerator ResetSpeedAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        dynamicSpeed = speed;
     }
 }

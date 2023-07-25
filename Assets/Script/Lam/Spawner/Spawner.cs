@@ -2,67 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Spawner : CusMonoBehaviour
 {
     
     public float spawnInterval = 3.0f;
     private float spawnTimer = 0.0f;
-    private ObjectPool objectPool;
-    private bool isMoving;
+    protected ObjectPool objectPool;
+    private bool isStart;
 
-    private void Start()
+    protected override void Start()
     {
-        isMoving = true;
+        isStart = true;
     }
 
     void Update()
     {
-        if (isMoving)
+        if (isStart)
         {
-            objectPool = ObjectPool.Instance;
-            spawnTimer += Time.deltaTime;
-
-            if (spawnTimer >= spawnInterval)
-            {
-                GameObject spawnedObject = objectPool.SpawnObject();
-
-                if (spawnedObject != null)
-                {
-                    spawnedObject.transform.position = transform.position; // set position
-                    spawnedObject.GetComponent<Obstacle>().StartMoving(); // moving
-                }
-
-                spawnTimer = 0.0f;
-            }
+            Spawn();
         }
     }
 
-    private void OnEnable()
+    public void Spawn()
     {
-        TouchEventPublisher.OnScreenTouchBegin += HandleScreenTouchBegin;
-        TouchEventPublisher.OnScreenTouchHold += HandleScreenTouchHold;
-        TouchEventPublisher.OnScreenTouchEnd += HandleScreenTouchEnd;
-    }
+        spawnTimer += Time.deltaTime;
 
-    private void OnDisable()
-    {
-        TouchEventPublisher.OnScreenTouchBegin -= HandleScreenTouchBegin;
-        TouchEventPublisher.OnScreenTouchHold -= HandleScreenTouchHold;
-        TouchEventPublisher.OnScreenTouchEnd -= HandleScreenTouchEnd;
-    }
+        if (spawnTimer >= spawnInterval)
+        {
+            GameObject spawnedObject = objectPool.GetObject();
 
-    private void HandleScreenTouchBegin()
-    {
-        isMoving = false;
-    }
+            if (spawnedObject != null)
+            {
+                spawnedObject.transform.position = transform.position; // set position
+                spawnedObject.SetActive(true); // spawn
+            }
 
-    private void HandleScreenTouchHold()
-    {
-        isMoving = false;
-    }
-
-    private void HandleScreenTouchEnd()
-    {
-        isMoving = true;
+            spawnTimer = 0.0f;
+        }
     }
 }

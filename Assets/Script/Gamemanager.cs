@@ -5,12 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
-
 public class Gamemanager : MonoBehaviour
 {
-
     private static Gamemanager instance;
-    public static Gamemanager Instance { get => instance;}
+    public static Gamemanager Instance { get => instance; }
 
     public CountdownTimer countdownTimer;
     private bool isGameOver = false;
@@ -27,18 +25,20 @@ public class Gamemanager : MonoBehaviour
     public List<Button> buttonsToHide;
     public List<Image> imagesToHide;
 
-    private float gameOverDelay = 1f; 
-
+    private float gameOverDelay = 1f;
     private float gameOverTimer = 0f;
 
     public static event Action OnStartGame;
 
     private void Awake()
     {
-        instance = this;
+        
     }
+
     private void Start()
     {
+        instance = this;
+
         playButton.onClick.AddListener(PlayGame);
         modeLevelButton.onClick.AddListener(LoadModeLevelScene);
         levelSelectButton.onClick.AddListener(LoadLevelSelectScene);
@@ -72,7 +72,13 @@ public class Gamemanager : MonoBehaviour
         StartCoroutine(LoadSceneByName("LevelSelect"));
     }
 
-    IEnumerator LoadSceneByName(string sceneName)
+    //temp
+    public void LoadTempScene()
+    {
+        StartCoroutine(LoadSceneByName("temp"));
+    }
+
+    public IEnumerator LoadSceneByName(string sceneName)
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);

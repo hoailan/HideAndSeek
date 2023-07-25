@@ -7,18 +7,19 @@ using TMPro;
 using UnityEngine.UIElements;
 using Spine;
 
-public class Scibidi : MonoBehaviour
+public class Scibidi : CusMonoBehaviour
 {
     private SkeletonAnimation skeletonAnimation;
-    FieldOfView fov;
-    public Vector3 targetPosition;
-    public Vector3 startPosition;
+    public FieldOfView fov;
+    private Vector3 targetPosition;
+    private Vector3 startPosition;
 
     public float movementSpeed = 3f;
     public float targetHeight = 3f;
-    public bool up = false;
+    public bool up = true;
     public bool check;
     private Vector3 back_po;
+    public bool toiletChecked = false;
 
     public enum SpineAnimationEnum
     {
@@ -31,16 +32,10 @@ public class Scibidi : MonoBehaviour
         up_head
     }
 
-    private void Awake()
+    protected override void LoadComponents()
     {
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         fov = GetComponentInChildren<FieldOfView>();
-        
-    }
-
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -48,17 +43,28 @@ public class Scibidi : MonoBehaviour
     {
         if (Player.OnObTouch && !up)
         {
+            up = true;
             targetPosition = transform.position + Vector3.up * targetHeight;
             startPosition = transform.position;
             StartCoroutine(moveToilet(startPosition, targetPosition));
             StartCoroutine(toiletUp());
-            //StartCoroutine(toiletCheck());
         }
-        if(Player.OnObTouch && up)
+        if (Player.OnObTouch && up)
         {
             StartCoroutine(toiletCheck());
+        }
+        if (fov.viewChecked && up)
+        {
+            toiletChecked = true;
+            Debug.Log("call");
+            StartCoroutine(toiletDown());
+            fov.viewChecked = false;
+        }
+        if (toiletChecked && up)
+        {
+            up = false;
+            toiletChecked = false;
             
-            //StartCoroutine(toiletDown());
         }
 
         check = fov.seenPlayer;
@@ -70,7 +76,6 @@ public class Scibidi : MonoBehaviour
 
     private IEnumerator toiletUp()
     {
-        up = true;
         PlayAnimation(SpineAnimationEnum.toilet);
 
         skeletonAnimation.timeScale = 0.6f;
@@ -83,11 +88,6 @@ public class Scibidi : MonoBehaviour
         skeletonAnimation.timeScale = 0.7f;
         skeletonAnimation.loop = true;
 
-        /*skeletonAnimation.loop = false;
-        fov.gameObject.GetComponent<MeshRenderer>().enabled = false;
-        PlayAnimation(SpineAnimationEnum.joker);
-        yield return new WaitForSeconds(skeletonAnimation.AnimationState.GetCurrent(0).Animation.Duration);
-        PlayAnimation(SpineAnimationEnum.down_head);*/
     }
 
     public IEnumerator moveToilet(Vector3 startPosition,Vector3 targetPosition )
@@ -109,7 +109,7 @@ public class Scibidi : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         PlayAnimation(SpineAnimationEnum.attack);
-        FieldOfView.isPeek = true;
+        fov.isPeek = true;
     }
 
     public IEnumerator toiletAttack()
@@ -118,8 +118,8 @@ public class Scibidi : MonoBehaviour
         skeletonAnimation.timeScale = 0.7f;
         fov.gameObject.GetComponent<MeshRenderer>().enabled = false;
         PlayAnimation(SpineAnimationEnum.attack_completer);
-        yield return new WaitForSeconds(skeletonAnimation.AnimationState.GetCurrent(0).Animation.Duration);
-        //Gamemanager.Instance.GameOver();
+        yield return new WaitForSeconds(skeletonAnimation.AnimationState.GetCurrent(0).Animation.Duration + 0.5f);
+        Gamemanager.Instance.GameOver();
     }
 
     public IEnumerator toiletDown()
@@ -130,8 +130,12 @@ public class Scibidi : MonoBehaviour
         PlayAnimation(SpineAnimationEnum.joker);
         yield return new WaitForSeconds(skeletonAnimation.AnimationState.GetCurrent(0).Animation.Duration);
         PlayAnimation(SpineAnimationEnum.down_head);
-        yield return null;
+        yield return new WaitForSeconds(skeletonAnimation.AnimationState.GetCurrent(0).Animation.Duration);
+        targetPosition = transform.position - Vector3.up * targetHeight;
+        startPosition = transform.position;
+        StartCoroutine(moveToilet(startPosition, targetPosition));
     }
+
 
     public IEnumerator toiletJoke()
     {
@@ -167,6 +171,21 @@ public class Scibidi : MonoBehaviour
         {
             PlayAnimation(SpineAnimationEnum.toilet);
         }
+    }
+
+    protected override void OnEnable()
+    {
+        Gamemanager.OnStartGame += HandleStartGame;
+    }
+
+    protected override void OnDisable()
+    {
+        Gamemanager.OnStartGame -= HandleStartGame;
+    }
+
+    private void HandleStartGame()
+    {
+        StartCoroutine(toiletDown());
     }
 
 }

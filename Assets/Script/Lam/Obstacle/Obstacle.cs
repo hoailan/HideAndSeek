@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public float speed;
-
+    private float speed = 2f;
+    public float speedUp = 3.5f;
+    public float speedDown = 0.5f;
+    public float normalSpeed = 2f;
+    public float durationSpeedChange = 2f;
     public bool isMoving = false;
 
-    private float distanceToDisable = 8f;
-    private float initialPositionX;
 
     private void Start()
     {
@@ -25,9 +26,7 @@ public class Obstacle : MonoBehaviour
     }
     public void StartMoving()
     {
-        speed = 2f;
         isMoving = true;
-        initialPositionX = transform.position.x;
     }
     private void DisableObject()
     {
@@ -38,14 +37,11 @@ public class Obstacle : MonoBehaviour
     private void OnEnable()
     {
         Gamemanager.OnStartGame += HandleStartGame;
-        FieldOfView.OnSeenPlayer += stopMoving;
     }
 
     private void OnDisable()
     {
-        TouchEventPublisher.OnScreenTouchBegin -= HandleScreenTouchBegin;
-        TouchEventPublisher.OnScreenTouchHold -= HandleScreenTouchHold;
-        TouchEventPublisher.OnScreenTouchEnd -= HandleScreenTouchEnd;
+        
         Player.OnPlayerFinish -= HandlePlayerFinish;
     }
 
@@ -54,8 +50,22 @@ public class Obstacle : MonoBehaviour
         TouchEventPublisher.OnScreenTouchBegin += HandleScreenTouchBegin;
         TouchEventPublisher.OnScreenTouchHold += HandleScreenTouchHold;
         TouchEventPublisher.OnScreenTouchEnd += HandleScreenTouchEnd;
+        FieldOfView.OnSeenPlayer += stopMoving;
         Player.OnPlayerFinish += HandlePlayerFinish;
+        Player.OnPlayerSpeedUp += HandleOnPlayerSpeedUp;
+        Player.OnPlayerSpeedDown += HandleOnPlayerSpeedDown;
         StartMoving();
+    }
+
+    private void HandlePlayerFinish()
+    {
+        stopMoving();
+        endEffect();
+        TouchEventPublisher.OnScreenTouchBegin -= HandleScreenTouchBegin;
+        TouchEventPublisher.OnScreenTouchHold -= HandleScreenTouchHold;
+        TouchEventPublisher.OnScreenTouchEnd -= HandleScreenTouchEnd;
+        Player.OnPlayerSpeedUp -= HandleOnPlayerSpeedUp;
+        Player.OnPlayerSpeedDown -= HandleOnPlayerSpeedDown;
     }
 
     private void HandleScreenTouchBegin()
@@ -73,18 +83,33 @@ public class Obstacle : MonoBehaviour
         isMoving = true;
     }
 
-    private void HandlePlayerFinish()
+    private void HandleOnPlayerSpeedUp()
     {
-        // to do
+        speed = speedUp;
+        StartCoroutine(ResetSpeedAfterDuration(durationSpeedChange));
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void HandleOnPlayerSpeedDown()
     {
-        //Debug.Log(collision.gameObject.name);
+        speed = speedDown;
+        StartCoroutine(ResetSpeedAfterDuration(durationSpeedChange));
+    }
+
+    // back to normail speed with "duration" second
+    private IEnumerator ResetSpeedAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        speed = normalSpeed;
+        // to do
     }
 
     private void stopMoving()
     {
         isMoving = false;
+    }
+
+    private void endEffect()
+    {
+        // to do
     }
 }

@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using static UnityEngine.UI.Image;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -17,16 +18,17 @@ public class FieldOfView : CusMonoBehaviour
     public float speed;
     [SerializeField]
     public bool seenPlayer;
-    public static bool isPeek;
+    public bool isPeek;
 
     private Mesh mesh;
     private Vector3 origin;
+    private Vector3 origin2;
     private float viewDistance;
     public bool viewChecked = false;
 
     public static event Action OnSeenPlayer;
 
-    private void Start()
+    protected override void Start()
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -60,12 +62,9 @@ public class FieldOfView : CusMonoBehaviour
 
     private void FOV()
     {
-        
         int rayCount = 50;
         float angle = getAngleFromVector(-transform.up) + fov / 2f;
         float angleIncrease = fov / rayCount;
-
-        
 
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];
@@ -79,16 +78,16 @@ public class FieldOfView : CusMonoBehaviour
         for (int i = 0; i <= rayCount; i++)
         {
             Vector3 vertex;
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, getVectorFromAngle(angle), viewDistance,layerMask);
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, getVectorFromAngle(angle), viewDistance, layerMask);
             if (raycastHit2D.collider == null)
             {
                 vertex = origin + getVectorFromAngle(angle) * viewDistance;
-                
+
             }
             else
             {
                 vertex = raycastHit2D.point;
-                
+
                 if (raycastHit2D.collider.transform.GetComponent<Player>() != null)
                 {
                     seenPlayer = true;
@@ -96,7 +95,7 @@ public class FieldOfView : CusMonoBehaviour
                 }
             }
             vertices[vertexIndex] = transform.InverseTransformPoint(vertex);
-            
+
             if (i > 0)
             {
                 triangles[triangleIndex + 0] = 0;
@@ -104,7 +103,7 @@ public class FieldOfView : CusMonoBehaviour
                 triangles[triangleIndex + 2] = vertexIndex;
                 triangleIndex += 3;
             }
-            
+
             vertexIndex++;
             angle -= angleIncrease;
         }
