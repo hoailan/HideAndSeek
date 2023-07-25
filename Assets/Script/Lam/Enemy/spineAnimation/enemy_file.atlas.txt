@@ -1,89 +1,89 @@
 
 enemy_file.png
-size: 1696,1148
+size: 1488,1148
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 L_ear
   rotate: false
-  xy: 1537, 705
+  xy: 880, 60
   size: 86, 162
   orig: 86, 163
   offset: 0, 0
   index: -1
 L_eyebrow
   rotate: false
-  xy: 1544, 576
+  xy: 1252, 268
   size: 148, 127
   orig: 151, 129
   offset: 2, 1
   index: -1
 L_eyes
   rotate: false
-  xy: 1002, 557
+  xy: 1238, 161
   size: 117, 105
   orig: 119, 107
   offset: 1, 1
   index: -1
 L_eyes2
   rotate: false
-  xy: 1002, 450
+  xy: 968, 70
   size: 117, 105
   orig: 119, 107
   offset: 1, 1
   index: -1
 L_eyes3
   rotate: false
-  xy: 1351, 352
+  xy: 1357, 49
   size: 115, 35
   orig: 117, 38
   offset: 1, 1
   index: -1
 L_iris
   rotate: false
-  xy: 1524, 95
+  xy: 1418, 645
   size: 28, 28
   orig: 30, 30
   offset: 1, 1
   index: -1
 R_ear
   rotate: false
-  xy: 1451, 704
+  xy: 1152, 141
   size: 84, 163
   orig: 84, 165
   offset: 0, 1
   index: -1
 R_eyebrow
   rotate: false
-  xy: 1544, 447
+  xy: 1002, 177
   size: 148, 127
   orig: 151, 129
   offset: 1, 1
   index: -1
 R_eyes
   rotate: false
-  xy: 1002, 343
+  xy: 1357, 161
   size: 117, 105
   orig: 119, 107
   offset: 1, 1
   index: -1
 R_eyes2
   rotate: false
-  xy: 1002, 236
+  xy: 1238, 54
   size: 117, 105
   orig: 119, 107
   offset: 1, 1
   index: -1
 R_eyes3
   rotate: false
-  xy: 1468, 352
+  xy: 968, 33
   size: 115, 35
   orig: 117, 38
   offset: 1, 1
   index: -1
 R_iris
   rotate: false
-  xy: 1554, 95
+  xy: 968, 194
   size: 28, 28
   orig: 30, 30
   offset: 1, 1
@@ -94,13 +94,6 @@ Up_toilet
   size: 438, 95
   orig: 440, 97
   offset: 1, 1
-  index: -1
-Up_toilet2
-  rotate: false
-  xy: 1002, 664
-  size: 447, 481
-  orig: 447, 481
-  offset: 0, 0
   index: -1
 hair
   rotate: false
@@ -118,63 +111,63 @@ head
   index: -1
 mouth
   rotate: false
-  xy: 1140, 72
+  xy: 1213, 894
   size: 270, 251
   orig: 273, 253
   offset: 1, 1
   index: -1
 mouth.02
   rotate: false
-  xy: 1412, 125
+  xy: 1002, 306
   size: 248, 225
   orig: 250, 227
   offset: 1, 1
   index: -1
 mouth1
   rotate: false
-  xy: 877, 16
+  xy: 617, 16
   size: 261, 206
   orig: 263, 208
   offset: 1, 1
   index: -1
 mouth2
   rotate: false
-  xy: 617, 5
+  xy: 1213, 675
   size: 258, 217
   orig: 259, 217
   offset: 1, 0
   index: -1
 mouth3
   rotate: false
-  xy: 1412, 50
+  xy: 1357, 86
   size: 110, 73
   orig: 111, 73
   offset: 1, 0
   index: -1
 neck
   rotate: false
-  xy: 1140, 325
+  xy: 1002, 808
   size: 209, 337
   orig: 214, 338
   offset: 4, 1
   index: -1
 nose
   rotate: false
-  xy: 1451, 1012
+  xy: 1195, 540
   size: 221, 133
   orig: 226, 136
   offset: 3, 2
   index: -1
 question
   rotate: false
-  xy: 1351, 389
+  xy: 1002, 533
   size: 191, 273
   orig: 191, 273
   offset: 0, 0
   index: -1
 teeth
   rotate: false
-  xy: 1451, 869
+  xy: 1252, 397
   size: 202, 141
   orig: 204, 145
   offset: 1, 2

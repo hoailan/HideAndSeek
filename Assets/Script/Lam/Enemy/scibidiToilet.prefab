@@ -175,7 +175,7 @@ MonoBehaviour:
   fov: 45
   speed: 2
   seenPlayer: 0
-  isPeek: 0
+  viewChecked: 0
 --- !u!33 &8683881206762774245
 MeshFilter:
   m_ObjectHideFlags: 0

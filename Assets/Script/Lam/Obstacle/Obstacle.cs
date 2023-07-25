@@ -25,7 +25,6 @@ public class Obstacle : MonoBehaviour
     }
     public void StartMoving()
     {
-        speed = 2f;
         isMoving = true;
         initialPositionX = transform.position.x;
     }

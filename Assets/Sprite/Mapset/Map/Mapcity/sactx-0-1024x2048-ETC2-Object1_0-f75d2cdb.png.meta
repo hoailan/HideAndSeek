@@ -305,7 +305,7 @@ TextureImporter:
         width: 15
         height: 351
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -313,6 +313,27 @@ TextureImporter:
       bones: []
       spriteID: 98dd6da9c6db72a45a3d4947d1659c9b
       internalID: -1648694610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x2048-ETC2-Object1_0-f75d2cdb_4
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1299
+        width: 196
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd6fc12af94dc9c438d7fe8184c31c93
+      internalID: 2018252216
       vertices: []
       indices: 
       edges: []

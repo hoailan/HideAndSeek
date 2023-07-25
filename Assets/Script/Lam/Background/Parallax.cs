@@ -7,7 +7,7 @@ public class Parallax : MonoBehaviour
     Material material;
     private float distance;
 
-    [Range(0f, 0.5f)]
+    [Range(0f, 2f)]
     public float speed = 0.2f;
     private float dynamicSpeed;
     public bool start = false;
