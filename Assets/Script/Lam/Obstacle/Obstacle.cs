@@ -1,59 +1,58 @@
+using DigitalRuby.AdvancedPolygonCollider;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    private float speed = 2f;
+    public float speed;
     public float speedUp = 3.5f;
     public float speedDown = 0.5f;
     public float normalSpeed = 2f;
     public float durationSpeedChange = 2f;
-    public bool isMoving = false;
+    protected bool isMoving = false;
+    protected Vector3 direction;
 
+    public void Awake()
+    {
+        
+    }
 
     private void Start()
     {
         isMoving = false;
+        direction = Vector3.left;
     }
 
     void Update()
     {
         if (isMoving)
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            moving(direction);
         }
+    }
+
+    public void moving(Vector3 direction)
+    {
+        transform.Translate(direction * speed * Time.deltaTime);
     }
     public void StartMoving()
     {
         isMoving = true;
     }
-    private void DisableObject()
-    {
-        isMoving = false;
-        gameObject.SetActive(false);
-    }
+    
 
     private void OnEnable()
     {
         Gamemanager.OnStartGame += HandleStartGame;
     }
 
-    private void OnDisable()
+    protected virtual void HandleStartGame()
     {
-        
-        Player.OnPlayerFinish -= HandlePlayerFinish;
-    }
-
-    private void HandleStartGame()
-    {
-        TouchEventPublisher.OnScreenTouchBegin += HandleScreenTouchBegin;
-        TouchEventPublisher.OnScreenTouchHold += HandleScreenTouchHold;
-        TouchEventPublisher.OnScreenTouchEnd += HandleScreenTouchEnd;
-        FieldOfView.OnSeenPlayer += stopMoving;
-        Player.OnPlayerFinish += HandlePlayerFinish;
-        Player.OnPlayerSpeedUp += HandleOnPlayerSpeedUp;
-        Player.OnPlayerSpeedDown += HandleOnPlayerSpeedDown;
+        SubTouchPub();
+        SubPlayer();
+        SubFOV();
         StartMoving();
     }
 
@@ -61,24 +60,60 @@ public class Obstacle : MonoBehaviour
     {
         stopMoving();
         endEffect();
+        UnSubTouchPub();
+        UnSubPlayer();
+    }
+
+    protected void SubTouchPub()
+    {
+        TouchEventPublisher.OnScreenTouchBegin += HandleScreenTouchBegin;
+        TouchEventPublisher.OnScreenTouchHold += HandleScreenTouchHold;
+        TouchEventPublisher.OnScreenTouchEnd += HandleScreenTouchEnd;
+    }
+
+    protected void UnSubTouchPub()
+    {
         TouchEventPublisher.OnScreenTouchBegin -= HandleScreenTouchBegin;
         TouchEventPublisher.OnScreenTouchHold -= HandleScreenTouchHold;
         TouchEventPublisher.OnScreenTouchEnd -= HandleScreenTouchEnd;
+    }
+
+    protected void SubPlayer()
+    {
+        Player.OnPlayerFinish += HandlePlayerFinish;
+        Player.OnPlayerSpeedUp += HandleOnPlayerSpeedUp;
+        Player.OnPlayerSpeedDown += HandleOnPlayerSpeedDown;
+    }
+
+    protected void UnSubPlayer()
+    {
         Player.OnPlayerSpeedUp -= HandleOnPlayerSpeedUp;
         Player.OnPlayerSpeedDown -= HandleOnPlayerSpeedDown;
+        Player.OnPlayerFinish -= HandlePlayerFinish;
     }
 
-    private void HandleScreenTouchBegin()
+    protected void SubFOV()
+    {
+        FieldOfView.OnSeenPlayer += stopMoving;
+    }
+
+    protected void UnSubFOV()
+    {
+        FieldOfView.OnSeenPlayer -= stopMoving;
+    }
+
+
+    protected virtual void HandleScreenTouchBegin()
     {
         stopMoving();
     }
 
-    private void HandleScreenTouchHold()
+    protected virtual void HandleScreenTouchHold()
     {
         stopMoving();
     }
 
-    private void HandleScreenTouchEnd()
+    protected virtual void HandleScreenTouchEnd()
     {
         isMoving = true;
     }

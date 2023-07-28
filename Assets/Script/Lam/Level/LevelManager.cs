@@ -46,7 +46,7 @@ public class LevelManager : MonoBehaviour
 
     public void loadLevel()
     {
-        level = 2;
+        level = 0;
         //level = PlayerPrefs.GetInt("level");
     }
 

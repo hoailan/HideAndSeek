@@ -14,8 +14,9 @@ public class Player : MonoBehaviour
     public static event Action OnPlayerFinish;
     public static event Action OnPlayerSpeedUp;
     public static event Action OnPlayerSpeedDown;
+    public static event Action OnPlayerReachCarCheck;
+    public static event Action OnPlayerReachDoor;
     public static bool OnObTouch;
-
     private Transform startPoint; 
     public float totalDistance; 
     public float percentage;
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
         win2,
         win2_loop
     }
-
+    public SpineAnimationEnum spineAnimation;
     private void Awake()
     {
         skeletonAnimation = GetComponent<SkeletonAnimation>();
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        PlayAnimation(SpineAnimationEnum.scary);
+        ScaryAnimation();
         OnObTouch = false;
         // temp
         
@@ -82,7 +83,7 @@ public class Player : MonoBehaviour
         // can change endpoint
         // reach endpoint
         GameObject gameObject = collision.gameObject;
-        if (gameObject.name.Equals("EndPoint"))
+        if (gameObject.name.Equals("EndPoint") || gameObject.GetComponent<EndPub>() != null)
         {
             if (collision.gameObject.GetComponent<EndPub>() == null)
             {
@@ -111,7 +112,18 @@ public class Player : MonoBehaviour
         if (gameObject.name.Equals("Check"))
         {
             OnObTouch = true;
-            Debug.Log("scibidi up - on player check");
+            // reach car
+            if (gameObject.transform.parent.name.Equals("Car"))
+            {
+                gameObject.SetActive(false);
+                OnPlayerReachCarCheck.Invoke();
+            }
+
+            if (gameObject.transform.parent.name.Equals("Door"))
+            {
+                //gameObject.SetActive(false);
+                OnPlayerReachDoor.Invoke();
+            }
         }
         else
         {
@@ -126,13 +138,13 @@ public class Player : MonoBehaviour
 
     private void HandleScreenTouchHold()
     {
-        PlayAnimation(SpineAnimationEnum.scary);
+        ScaryAnimation();
         skeletonAnimation.timeScale = 1f;
     }
 
     private void HandleScreenTouchEnd()
     {
-        PlayAnimation(SpineAnimationEnum.run);
+        RunAnimation();
         skeletonAnimation.timeScale = 2f;
     }
 
@@ -141,7 +153,7 @@ public class Player : MonoBehaviour
         TouchEventPublisher.OnScreenTouchBegin += HandleScreenTouchBegin;
         TouchEventPublisher.OnScreenTouchHold += HandleScreenTouchHold;
         TouchEventPublisher.OnScreenTouchEnd += HandleScreenTouchEnd;
-        PlayAnimation(SpineAnimationEnum.run);
+        RunAnimation();
         skeletonAnimation.timeScale = 2f;
         getEndPoint();
     }
@@ -171,7 +183,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("player speed up");
         // to do
-        PlayAnimation(SpineAnimationEnum.run_speed);
+        RunFastAnimation();
         //back
         StartCoroutine(ResetSpeedAfterDuration(durationSpeedChange));
     }
@@ -192,7 +204,25 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(duration);
         Debug.Log("back in: " + duration );
         // to do
+        RunAnimation();
+    }
+
+    public void RunAnimation()
+    {
         PlayAnimation(SpineAnimationEnum.run);
+        spineAnimation = SpineAnimationEnum.run;
+    }
+
+    public void RunFastAnimation()
+    {
+        PlayAnimation(SpineAnimationEnum.run_speed);
+        spineAnimation = SpineAnimationEnum.run_speed;
+    }
+
+    public void ScaryAnimation()
+    {
+        PlayAnimation(SpineAnimationEnum.scary);
+        spineAnimation = SpineAnimationEnum.scary;
     }
 
     public void PlayAnimation(SpineAnimationEnum animation)

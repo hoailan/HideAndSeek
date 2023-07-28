@@ -12,7 +12,7 @@ public class TouchEventPublisher : MonoBehaviour
 
     public bool isTouching = false;
     public float touchDuration = 0f;
-    private float touchHoldThreshold = 0.5f; 
+    private float touchHoldThreshold = 0.2f; 
 
     private void Update()
     {

@@ -12,13 +12,18 @@ public class StartRun : MonoBehaviour
 
     private void Awake()
     {
+        
+    }
+
+    private void Start()
+    {
         Gamemanager.OnStartGame += startFade;
     }
 
-
     public void startFade()
     {
-        gameObject.GetComponent<Renderer>().enabled = true;    
+        // bug missing here - pending
+        GetComponent<SpriteRenderer>().enabled = true;
         StartCoroutine(fade());
     }
 
